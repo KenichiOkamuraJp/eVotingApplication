@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+<h2>Voters list maintenance</h2>
+<hr>
+<br>
+<h3>Command</h3>
+<form method="POST" action="./maintenance">
+<table border width=800>
+	<tr>
+		<td width=80><h4>1.Insert</h4></td>
+		<td>Voter ID <input name="ins_id" type="text" ></td>
+		<td>Password <input name="ins_pass" type="password" ></td>
+		<td><button type="Submit" name="command" value="insert">Submit</button></td></tr>
+	<tr>
+		<td><h4>2.Delete</h4></td>
+		<td>Voter ID <input name="del_id" type="text" ></td>
+		<td>Password <input name="del_pass" type="password" ></td>
+		<td><button type="Submit" name="command" value="delete">Submit</button></td></tr>
+	<tr>
+		<td colspan=3><h4>3.Reload list</h4></td>
+		<td><button type="Submit" name="command" value="reload">Submit</button></td></tr>
+	<tr>
+		<td colspan=3><h4>4.Initialize all voters list</h4></td>
+		<td><button type="Submit" name="command" value="initialize">Submit</button></td></tr>
+	<tr>
+		<td colspan=3><h4>5.Logout</h4></td>
+		<td><button type="Submit" name="command" value="logout">Submit</button></td></tr>
+</table>
+</form>
+<br>
+<ul>
+	{{range .result}}
+	<li>{{.}}</li>
+	{{end}}
+</ul>
+
+<br>
+<br>
+<hr>
+<h3>Voters List</h3>
+{{.votersList}}
+		
+	</body>
+</html>

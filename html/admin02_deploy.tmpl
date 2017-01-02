@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+<h2>Deploy chaincode</h2>
+<hr>
+<br>
+<form method="POST" action="./deploy">
+<button type="submit">Deploy chaincode from GitHub</button>
+</form>
+<br>
+<form method="POST" action="./logout">
+<button type="submit">Logout</button>
+</form>
+<br>
+<hr>
+Response from bluemix
+<hr>
+<ul>
+	{{range .response}}
+	<li>{{.}}</li>
+	{{end}}
+</ul>
+		
+	</body>
+</html>
