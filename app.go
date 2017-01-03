@@ -8,7 +8,15 @@ import (
 	"./blockchainutils"
 	"fmt"
 	"strconv"
+	"encoding/json"
 )
+
+type Voter struct {
+	Id			string
+	Password	string
+	Frequency	int64
+	Destination	int64
+}
 
 const remoteUrl = "https://689ed6712dc4436f901ffbddfa7a9d22-vp0.us.blockchain.ibm.com:5002"
 const localUrl = "http://localhost:7050"
@@ -36,12 +44,35 @@ func loginHandler (c *gin.Context)  {
 	c.Request.ParseForm()
 	id := c.Request.Form["id"]
 	pass := c.Request.Form["pass"]	
+	var message  []string
+	var voters []Voter
 	
 	if id[0] == "jinji" && pass[0] == "jinji" {
 		c.HTML(http.StatusOK, "admin02_deploy.tmpl", nil)		
 	} else if id[0] == "admin" && pass[0] == "admin" {
-		//Chaincode "Query"-"getAll"
-		c.HTML(http.StatusOK, "admin03_master.tmpl", nil)		
+		// Get_All
+		flgOk, resp := actChaincode("query",[]string{"getAll"})
+		if flgOk {
+			// If no voters are registerd
+			if resp.Message == "null" {
+				message = append(message, "No voters are registered.")	
+			} else {
+				// Decode votersList				
+				voters = make([]Voter,0,0)
+				err := json.Unmarshal([]byte(resp.Message), &voters)
+				if err != nil {
+					fmt.Println("JSON Unmarshal error:", err)
+					return					
+				}
+			}
+			
+		} else { 
+			message = append(message, "** Error Occured in querying **")
+			message = append(message, "Code : " + strconv.FormatFloat(resp.ErrorCode, 'f', 4, 64))
+			message = append(message, "Message : " + resp.ErrorMessage)
+			message = append(message, "Data : " + resp.ErrorData)
+		}	
+		c.HTML(http.StatusOK, "admin03_master.tmpl", gin.H{"result": message, "votersList" : voters})		
 	} else {
 		c.HTML(http.StatusOK, "admin01_login.tmpl", gin.H{"errorMessage": "Invalid id or password",})	
 	}
@@ -88,11 +119,33 @@ func deployHandler (c *gin.Context)  {
 	c.HTML(http.StatusOK, "admin02_deploy.tmpl", gin.H{"response":log,})	
 }
 
+func setupHandler (c *gin.Context)  {
+	
+	var log []string
+		
+	//Chaincode "deploy"
+	log = append(log,"Trying to setup...")
+	flgDepOk, setupResp := actChaincode("invoke",[]string{"setup"})
+	if flgDepOk {
+		log = append(log,"Success.")
+		log = append(log,"Message :" + setupResp.Message)
+		chaincode = setupResp.Message		
+	} else {
+		log = append(log,"Failure.")
+		log = append(log,"Code :" + strconv.FormatFloat(setupResp.ErrorCode, 'f', 4, 64))
+		log = append(log,"Message :" + setupResp.ErrorMessage)
+		log = append(log,"Data :" + setupResp.ErrorData)
+	}
+	
+	c.HTML(http.StatusOK, "admin02_deploy.tmpl", gin.H{"response":log,})	
+}
+
 func maintenanceHandler (c *gin.Context)  {
 	
 	var flgOk	bool
 	var resp	blockchainutils.ChaincodeResponse
 	var message []string
+	var voters []Voter = make([]Voter,0,0)
 	var screen	int
 	
 	c.Request.ParseForm()
@@ -100,12 +153,28 @@ func maintenanceHandler (c *gin.Context)  {
 	
 	switch command[0] {
 		case "insert" :
-		//1.Chaincode "invoke"-"add"-"ins_id"-"ins_pass"
-		flgOk, resp = actChaincode("invoke",[]string{"add",c.Request.Form["ins_id"][0],c.Request.Form["ins_pass"][0]})
+		flgOk, resp = actChaincode("query",[]string{"existCheck",c.Request.Form["ins_id"][0]})
+		if flgOk {
+			if resp.Message == "Not Exist" {
+				//1.Chaincode "invoke"-"add"-"ins_id"-"ins_pass"
+				flgOk, resp = actChaincode("invoke",[]string{"add",c.Request.Form["ins_id"][0],c.Request.Form["ins_pass"][0]})				
+			} else {
+				message = append(message,c.Request.Form["ins_id"][0] + " already exists")
+				flgOk = false
+			}
+		}
 		screen = 3
 		case "delete" :
-		//2.Chaincode "invoke"-"delete"-"del_id"-"del_pass"
-		flgOk, resp = actChaincode("invoke",[]string{"delete",c.Request.Form["del_id"][0],c.Request.Form["del_pass"][0]})
+		flgOk, resp = actChaincode("query",[]string{"authentication",c.Request.Form["del_id"][0],c.Request.Form["del_pass"][0]})
+		if flgOk {
+			if resp.Message == "Authenticated" {
+				//2.Chaincode "invoke"-"delete"-"del_id"-"del_pass"
+				flgOk, resp = actChaincode("invoke",[]string{"delete",c.Request.Form["del_id"][0],c.Request.Form["del_pass"][0]})				
+			} else {
+				message = append(message, "Invalid id or password")
+				flgOk = false
+			}
+		}		
 		screen = 3
 		case "reload" :
 		screen = 3
@@ -134,14 +203,27 @@ func maintenanceHandler (c *gin.Context)  {
 		flgOk, resp = actChaincode("query",[]string{"getAll"})
 		if flgOk {
 			message = append(message, "** Successfully queried **") 
-			// ここにgetAllの結果(resp.Message)を解析するルーチンを入れる
+
+			// If no voters are registerd
+			if resp.Message == "null" {
+				message = append(message, "But, no voters are registered.")	
+			} else {
+				// Decode votersList				
+				voters = make([]Voter,0,0)
+				err := json.Unmarshal([]byte(resp.Message), &voters)
+				if err != nil {
+					fmt.Println("JSON Unmarshal error:", err)
+					return					
+				}
+			}
+			
 		} else { 
 			message = append(message, "** Error Occured in querying **")
 			message = append(message, "Code : " + strconv.FormatFloat(resp.ErrorCode, 'f', 4, 64))
 			message = append(message, "Message : " + resp.ErrorMessage)
 			message = append(message, "Data : " + resp.ErrorData)
 		}			
-		c.HTML(http.StatusOK, "admin03_master.tmpl", gin.H{"result": message,})
+		c.HTML(http.StatusOK, "admin03_master.tmpl", gin.H{"result": message, "votersList" : voters})
 		case 4 :
 		c.HTML(http.StatusOK, "admin04_logout.tmpl", nil)
 		default :
@@ -278,6 +360,7 @@ func main() {
 	router.GET("/index", indexHandler)
 	router.POST("/login", loginHandler)
 	router.POST("/deploy", deployHandler)
+	router.POST("/setup", setupHandler)
 	router.POST("/logout", logoutHandler)
 	router.POST("/maintenance", maintenanceHandler)
 
