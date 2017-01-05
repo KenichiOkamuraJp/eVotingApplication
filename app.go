@@ -36,11 +36,11 @@ const dbUserID = "user_type1_1"
 const dbUserPass = "b9fa1606ac"
 
 const debug = true
-const env = "local"
+const env = "remote"
 
 var url string
 
-var chaincode string = "c0f54a3cab92b1a69057f73d2b457a88a74e6ae9162a15f172db4c80aa72bbabc09ad10dc6a796b7ef73d92bcbc30abf88440da5fe154962089647e7d96af238"
+var chaincode string = "99319c2c5a19b814a56455d5683ccac981c50363f1e52e0eb53ab1c8bb451f4821bf5b086bda1ddae1315211c11196cc0bce350a314838dcfc54312bd16249e8"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // eventHandler
