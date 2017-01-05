@@ -1,5 +1,6 @@
 {
 	"ImportPath": "github.com/KenichiOkamuraJp/eVotingApplication",
+	"GoVersion": "go1.6.1",
 	"GodepVersion": "v75",
 	"Deps": [
 		{
