@@ -1,6 +1,6 @@
 {
-	"ImportPath": "github.com/gin-gonic/contrib/sessions",
-	"GoVersion": "go1.4.2",
+	"ImportPath": "github.com/KenichiOkamuraJp/eVotingApplication",
+	"GoVersion": "go1.7",
 	"GodepVersion": "v75",
 	"Deps": [
 		{
@@ -8,13 +8,23 @@
 			"Rev": "0cd55584b172cefd31c4cb84e2904585d898c7b2"
 		},
 		{
+			"ImportPath": "github.com/garyburd/redigo/internal",
+			"Comment": "v1.0.0-16-g8c052d8",
+			"Rev": "8c052d82153967815d9093a7e9d3e7fd2e554861"
+		},
+		{
+			"ImportPath": "github.com/garyburd/redigo/redis",
+			"Comment": "v1.0.0-16-g8c052d8",
+			"Rev": "8c052d82153967815d9093a7e9d3e7fd2e554861"
+		},
+		{
+			"ImportPath": "github.com/gin-gonic/contrib/sessions",
+			"Rev": "7b9bbbaec78850441ed357ac702e474b26c08f9b"
+		},
+		{
 			"ImportPath": "github.com/gin-gonic/gin",
 			"Comment": "v1.1.4",
 			"Rev": "e2212d40c62a98b388a5eb48ecbdcf88534688ba"
-		},
-		{
-			"ImportPath": "github.com/gorilla/sessions",
-			"Rev": "f61c3ec2cf65d69e7efedfd4d060fe128882c951"
 		},
 		{
 			"ImportPath": "github.com/gin-gonic/gin/binding",
@@ -25,6 +35,24 @@
 			"ImportPath": "github.com/gin-gonic/gin/render",
 			"Comment": "v1.1.4",
 			"Rev": "e2212d40c62a98b388a5eb48ecbdcf88534688ba"
+		},
+		{
+			"ImportPath": "github.com/golang/protobuf/proto",
+			"Rev": "8ee79997227bf9b34611aee7946ae64735e6fd93"
+		},
+		{
+			"ImportPath": "github.com/gorilla/context",
+			"Comment": "v1.1-7-g08b5f42",
+			"Rev": "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
+		},
+		{
+			"ImportPath": "github.com/gorilla/securecookie",
+			"Comment": "v1.1-5-gfa5329f",
+			"Rev": "fa5329f913702981df43dcb2a380bac429c810b5"
+		},
+		{
+			"ImportPath": "github.com/gorilla/sessions",
+			"Rev": "f61c3ec2cf65d69e7efedfd4d060fe128882c951"
 		},
 		{
 			"ImportPath": "github.com/manucorporat/sse",
@@ -39,8 +67,8 @@
 			"Rev": "8fd7f25955530b92e73e9e1932a41b522b22ccd9"
 		},
 		{
-			"ImportPath": "github.com/golang/protobuf/proto",
-			"Rev": "8ee79997227bf9b34611aee7946ae64735e6fd93"
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "d75a52659825e75fff6158388dddc6a5b04f9ba5"
 		},
 		{
 			"ImportPath": "gopkg.in/go-playground/validator.v8",
@@ -50,10 +78,6 @@
 		{
 			"ImportPath": "gopkg.in/yaml.v2",
 			"Rev": "a5b47d31c556af34a302ce5d659e6fea44d90de0"
-		},
-		{
-			"ImportPath": "golang.org/x/sys/unix",
-			"Rev": "d75a52659825e75fff6158388dddc6a5b04f9ba5"
 		}
 	]
 }
