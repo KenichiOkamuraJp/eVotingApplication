@@ -10,23 +10,23 @@
 <hr>
 <br>
 <h3>Command</h3>
-<form method="POST" action="./admin_maintenance_limited">
+<form method="POST" action="./maintenance_limited">
 <table border width=800>
 	<tr>
-		<td colspan=3><h4>1.Reload list</h4></td>
+		<td colspan=3><h4>1.リストの再読込</h4></td>
 		<td><button type="Submit" name="command" value="reload">Submit</button></td></tr>
 	<tr>
-		<td width=80><h4>2.Insert</h4></td>
-		<td>Voter ID <input name="ins_id" type="text" ></td>
+		<td width=160><h4>2.投票者の登録</h4></td>
+		<td>投票者ID <input name="ins_id" type="text" ></td>
 		<td>Password <input name="ins_pass" type="password" ></td>
 		<td><button type="Submit" name="command" value="insert">Submit</button></td></tr>
 	<tr>
-		<td><h4>3.Delete</h4></td>
-		<td>Voter ID <input name="del_id" type="text" ></td>
+		<td><h4>3.投票者の削除</h4></td>
+		<td>投票者ID <input name="del_id" type="text" ></td>
 		<td>Password <input name="del_pass" type="password" ></td>
 		<td><button type="Submit" name="command" value="delete">Submit</button></td></tr>
 	<tr>
-		<td colspan=3><h4>4.Logout</h4></td>
+		<td colspan=3><h4>4.ログアウト</h4></td>
 		<td><button type="Submit" name="command" value="logout">Submit</button></td></tr>
 </table>
 </form>
@@ -41,8 +41,8 @@
 
 <table border width=800>
 <tr>
-	<td>ID</td>
-	<td>frequency</td>
+	<td>投票者ID</td>
+	<td>投票回数</td>
 {{range .votersList}}
 <tr>
 	<td>{{.Id}}</td>

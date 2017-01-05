@@ -204,7 +204,7 @@ func adminMaintenanceHandler (c *gin.Context)  {
 	
 	if command[0] == "insert" || command[0] == "delete" || command[0] == "initialize" {
 		if flgOk {
-			message = append(message, "** Successfully operated **") 
+			message = append(message, "処理成功（但し、再読み込み必要）") 
 		} else { 
 			message = append(message, "** Error Occured in operation **")
 			message = append(message, "Code : " + strconv.FormatFloat(resp.ErrorCode, 'f', 4, 64))
@@ -217,7 +217,7 @@ func adminMaintenanceHandler (c *gin.Context)  {
 		case 3 :
 		flgOk, resp = actChaincode("query",[]string{"getAll"})
 		if flgOk {
-			message = append(message, "** Successfully queried **") 
+			message = append(message, "データ読み込みに成功") 
 
 			// If no voters are registerd
 			if resp.Message == "null" {
@@ -683,13 +683,13 @@ func main() {
 		return
 	}
 	
-	router.GET("/admin_index", 			adminIndexHandler)
-	router.POST("/admin_login", 		adminLoginHandler)
-	router.POST("/admin_deploy", 		adminDeployHandler)
-	router.POST("/admin_setup", 		adminSetupHandler)
-	router.POST("/admin_logout", 		adminLogoutHandler)
-	router.POST("/admin_maintenance",	adminMaintenanceHandler)
-	router.POST("/admin_maintenance_limited",	adminMaintenanceLimitedHandler)
+	router.GET("/admin/index", 			adminIndexHandler)
+	router.POST("/admin/login", 		adminLoginHandler)
+	router.POST("/admin/deploy", 		adminDeployHandler)
+	router.POST("/admin/setup", 		adminSetupHandler)
+	router.POST("/admin/logout", 		adminLogoutHandler)
+	router.POST("/admin/maintenance",	adminMaintenanceHandler)
+	router.POST("/admin/maintenance_limited",	adminMaintenanceLimitedHandler)
 	
 	router.GET("/index", 	indexHandler)
 	router.POST("/login", 	loginHandler)
