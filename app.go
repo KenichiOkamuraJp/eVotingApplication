@@ -486,7 +486,7 @@ func viewHandler (c * gin.Context) {
 	
 	var sum_vote, sum int
 	//var vote_rate float64
-	for i := 0 ; i < 62 ; i ++ {
+	for i := 0 ; i < 63 ; i ++ {
 		sum_vote = sum_vote + count[i]
 	}
 	sum = sum_vote + count[63]
