@@ -10,6 +10,7 @@
 <p>{{.user.UserID}}さん、以下のリストの中から最も優れたリーダーを１人選んで下さい。</p>
 
 <form method="POST" action="./vote">
+<input type="radio" name="dest" value="255" checked="checked" style="display:none;" />
 <p>
 <button type="Submit" name="command" value="vote">　　　　　　　　　投　　　　票　　　　　　　　　　</button>
 <button type="Submit" name="command" value="logout">投票せずログアウト（白票にもなりません）</button>

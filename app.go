@@ -35,7 +35,7 @@ const localAppName = "mycc"
 const dbUserID = "user_type1_1"
 const dbUserPass = "b9fa1606ac"
 
-const debug = true
+const debug = false
 const env = "remote"
 
 var url string
@@ -376,6 +376,13 @@ func voteHandler (c *gin.Context) {
 		c.HTML(http.StatusOK, "admin04_logout.tmpl", nil)
 	} else if command == "vote" {
 	
+		// If not selected return error
+		if destination == 255 {
+			info := getSessionInfo(c)
+			c.HTML(http.StatusOK, "vote02_vote.tmpl", gin.H{"user" : info})
+			return	
+		}
+	
 		// session check
 		info := getSessionInfo(c)
 		userid := info.UserID
@@ -676,13 +683,13 @@ func main() {
 		return
 	}
 	
-	router.GET("/admin/index", 			adminIndexHandler)
-	router.POST("/admin/login", 		adminLoginHandler)
-	router.POST("/admin/deploy", 		adminDeployHandler)
-	router.POST("/admin/setup", 		adminSetupHandler)
-	router.POST("/admin/logout", 		adminLogoutHandler)
-	router.POST("/admin/maintenance",	adminMaintenanceHandler)
-	router.POST("/admin/maintenance_limited",	adminMaintenanceLimitedHandler)
+	router.GET("/admin_index", 			adminIndexHandler)
+	router.POST("/admin_login", 		adminLoginHandler)
+	router.POST("/admin_deploy", 		adminDeployHandler)
+	router.POST("/admin_setup", 		adminSetupHandler)
+	router.POST("/admin_logout", 		adminLogoutHandler)
+	router.POST("/admin_maintenance",	adminMaintenanceHandler)
+	router.POST("/admin_maintenance_limited",	adminMaintenanceLimitedHandler)
 	
 	router.GET("/index", 	indexHandler)
 	router.POST("/login", 	loginHandler)
