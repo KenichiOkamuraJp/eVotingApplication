@@ -5,6 +5,338 @@
 		<title></title>
 	</head>
 	<body>
+<h2>Voting sheet</h2>
+<hr>
+<p>{{.user.UserID}}さん、以下のリストの中から最も優れたリーダーを１人選んで下さい。</p>
+
+<form method="POST" action="./vote">
+<p>
+<button type="Submit" name="command" value="vote">　　　　　　　　　投　　　　票　　　　　　　　　　</button>
+<button type="Submit" name="command" value="logout">投票せずログアウト（白票にもなりません）</button>
+</p>
+<table border width=1200>
+<tr>
+	<td></td><td>No.</td><td>名前</td><td>ふりがな</td><td>所属</td><td width=600>説明</td><td>リンク</td></tr>
+
+<tr>
+	<td><input type ="radio" name="dest" value="0"></td>
+	<td>0</td><td>該当なし（白票）</td><td></td><td></td><td></td><td></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="1"></td>
+	<td>1</td><td>伊藤博文</td><td>いとうひろぶみ</td>
+	<td>立憲政友会</td><td>初代総理。大日本帝国憲法の起草を始め、近代日本の礎を築く。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E4%BC%8A%E8%97%A4%E5%8D%9A%E6%96%87" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="2"></td>
+	<td>2</td><td>黒田清隆</td><td>くろだきよたか</td>
+	<td>なし</td><td>西郷・大久保亡き後の薩摩閥の最有力者。酒乱での乱行、疑獄事件で名声を失う。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%BB%92%E7%94%B0%E6%B8%85%E9%9A%86" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="3"></td>
+	<td>3</td><td>山縣有朋</td><td>やまがたありとも</td>
+	<td>なし</td><td>陸軍、官僚制の基礎を築く。元老として権勢を誇るも、宮中某重大事件で失脚。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B1%B1%E7%B8%A3%E6%9C%89%E6%9C%8B" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="4"></td>
+	<td>4</td><td>松方正義</td><td>まつかたまさよし</td>
+	<td>なし</td><td>薩摩出身。日本銀行設立、金本位制の確立等の「松方財政」を推進する。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%9D%BE%E6%96%B9%E6%AD%A3%E7%BE%A9" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="5"></td>
+	<td>5</td><td>大隈重信</td><td>おおくましげのぶ</td>
+	<td>立憲改進党</td><td>早稲田大学創設者。薩長藩閥政府に風穴を開けるが、トラブルメーカーの側面も。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%9A%88%E9%87%8D%E4%BF%A1" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="6"></td>
+	<td>6</td><td>桂太郎</td><td>かつらたろう</td>
+	<td>なし</td><td>総理大臣への在籍日数歴代一位。日清・日露両戦争を勝利に導く。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%A1%82%E5%A4%AA%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="7"></td>
+	<td>7</td><td>西園寺公望</td><td>さいおんじきんもち</td>
+	<td>立憲政友会</td><td>「最後の元老」として天皇を輔弼。昭和期には実際に首相を選定する役目を担う。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E8%A5%BF%E5%9C%92%E5%AF%BA%E5%85%AC%E6%9C%9B" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="8"></td>
+	<td>8</td><td>山本権兵衛</td><td>やまもとごんのひょうえ</td>
+	<td>なし</td><td>長期に渡り海軍の強化に貢献。総理大臣として関東大震災からの帝都復興を推進。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B1%B1%E6%9C%AC%E6%A8%A9%E5%85%B5%E8%A1%9B" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="9"></td>
+	<td>9</td><td>寺内正毅</td><td>てらうちまさたけ</td>
+	<td>なし</td><td>陸軍出身。第一次世界大戦に乗じシベリア出兵を宣言するも米騒動により総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%AF%BA%E5%86%85%E6%AD%A3%E6%AF%85" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="10"></td>
+	<td>10</td><td>原敬</td><td>てらうちまさたけ</td>
+	<td>立憲政友会</td><td>平民宰相であると同時に、利益誘導政治の祖でもある。東京駅で暗殺される。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%8E%9F%E6%95%AC" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="11"></td>
+	<td>11</td><td>高橋是清</td><td>たかはしこれきよ</td>
+	<td>立憲政友会</td><td>総理時代より、大恐慌によるデフレ脱却を実現した「高橋財政」が有名。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%AB%98%E6%A9%8B%E6%98%AF%E6%B8%85" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="12"></td>
+	<td>12</td><td>加藤友三郎</td><td>かとうともさぶろう</td>
+	<td>なし</td><td>海軍出身。政党主体でなく「変態内閣」と評されるも、シベリア撤兵を完遂。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%8A%A0%E8%97%A4%E5%8F%8B%E4%B8%89%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="13"></td>
+	<td>13</td><td>清浦奎吾</td><td>きようらけいご</td>
+	<td>なし</td><td>政党と対立姿勢を取り、第二次護憲運動を招く。解散総選挙で大敗。総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%B8%85%E6%B5%A6%E5%A5%8E%E5%90%BE" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="14"></td>
+	<td>14</td><td>加藤高明</td><td>かとうたかあき</td>
+	<td>憲政会</td><td>外交官出身。普通選挙法の成立で有名だが、同年、治安維持法も成立。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%8A%A0%E8%97%A4%E9%AB%98%E6%98%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="15"></td>
+	<td>15</td><td>若槻礼次郎</td><td>かとうたかあき</td>
+	<td>立憲民政党</td><td>二度総理となるが、昭和金融恐慌、満州事変と変に臨んで指導力を発揮できず</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E8%8B%A5%E6%A7%BB%E7%A6%AE%E6%AC%A1%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="16"></td>
+	<td>16</td><td>田中義一</td><td>たなかぎいち</td>
+	<td>立憲政友会</td><td>張作霖爆殺事件で昭和天皇の不信任を受けて内閣総辞職。その三ヶ月後に病死。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%94%B0%E4%B8%AD%E7%BE%A9%E4%B8%80" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="17"></td>
+	<td>17</td><td>濱口雄幸</td><td>はまぐちおさち</td>
+	<td>立憲民政党</td><td>ライオン宰相。軍縮と緊縮財政を推進するも、右翼に銃撃されその後死亡。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%BF%B1%E5%8F%A3%E9%9B%84%E5%B9%B8" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="18"></td>
+	<td>18</td><td>犬養毅</td><td>いぬかいつよし</td>
+	<td>立憲政友会</td><td>濱口内閣を統帥権干犯問題で攻撃。総理となるも五・一五事件で凶弾に斃れる。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%8A%AC%E9%A4%8A%E6%AF%85" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="19"></td>
+	<td>19</td><td>斎藤実</td><td>さいとうまこと</td>
+	<td>なし</td><td>海軍出身。満州を承認し、国際連盟を脱退。二・二六事件で暗殺される。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%96%8E%E8%97%A4%E5%AE%9F" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="20"></td>
+	<td>20</td><td>岡田啓介</td><td>おかだけいすけ</td>
+	<td>なし</td><td>二・二六事件を生き延びるも総辞職。その後、太平洋戦争の終戦工作に奔走。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B2%A1%E7%94%B0%E5%95%93%E4%BB%8B" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="21"></td>
+	<td>21</td><td>広田弘毅</td><td>ひろたこうき</td>
+	<td>なし</td><td>文官唯一のA級戦犯。軍部に抗った悲劇の宰相か、迎合した無策の人物か。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%BA%83%E7%94%B0%E5%BC%98%E6%AF%85" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="22"></td>
+	<td>22</td><td>林銑十郎</td><td>はやしせんじゅうろう</td>
+	<td>なし</td><td>陸軍出身。特に業績はなく「何にもせんじゅうろう内閣」の異名を取る。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%9E%97%E9%8A%91%E5%8D%81%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="23"></td>
+	<td>23</td><td>近衛文麿</td><td>このえふみまろ</td>
+	<td>大政翼賛会</td><td>国民の期待を背負い登板するも、日本を混乱と戦争に巻き込む。最後は服毒自殺。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E8%BF%91%E8%A1%9B%E6%96%87%E9%BA%BF" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="24"></td>
+	<td>24</td><td>平沼騏一郎</td><td>ひらぬまきいちろう</td>
+	<td>なし</td><td>独露相互不可侵条約締結の報を受け、「欧州の天地は複雑怪奇」と残し総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B9%B3%E6%B2%BC%E9%A8%8F%E4%B8%80%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="25"></td>
+	<td>25</td><td>阿部信行</td><td>あべのぶゆき</td>
+	<td>翼賛政治会</td><td>陸軍出身。陸軍内外の勢力に翻弄され、何も為すことなく４ヶ月で辞任。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%98%BF%E9%83%A8%E4%BF%A1%E8%A1%8C" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="26"></td>
+	<td>26</td><td>米内光政</td><td>よないみつまさ</td>
+	<td>なし</td><td>海軍出身の良識派。現役武官制下の陸軍大臣を引き上げられ、半年で総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%B1%B3%E5%86%85%E5%85%89%E6%94%BF" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="27"></td>
+	<td>27</td><td>東条英機</td><td>とうじょうひでき</td>
+	<td>大政翼賛会</td><td>その人物的評価は多岐に渡る。太平洋戦争を始め、最終的にA級戦犯として刑死。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%9D%B1%E6%A2%9D%E8%8B%B1%E6%A9%9F" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="28"></td>
+	<td>28</td><td>小磯国昭</td><td>こいそくにあき</td>
+	<td>大政翼賛会</td><td>戦局悪化で登板も、為す術もなく８ヶ月で退陣。歌が非常に上手かったらしい。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B0%8F%E7%A3%AF%E5%9C%8B%E6%98%AD" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="29"></td>
+	<td>29</td><td>鈴木貫太郎</td><td>すずきかんたろう</td>
+	<td>大政翼賛会</td><td>ポツダム宣言の受諾など終戦工作を主導。玉音放送の放送後総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%88%B4%E6%9C%A8%E8%B2%AB%E5%A4%AA%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="30"></td>
+	<td>30</td><td>東久邇宮稔彦王</td><td>ひがしくにのみやなるひこおう</td>
+	<td>なし</td><td>皇族唯一の首相。降伏文書に調印。GHQによる内政干渉に抗議し総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%9D%B1%E4%B9%85%E9%82%87%E5%AE%AE%E7%A8%94%E5%BD%A6%E7%8E%8B" TARGET="_blank" >リンク</a></td></tr>	
+<tr>
+	<td><input type ="radio" name="dest" value="31"></td>
+	<td>31</td><td>幣原喜重郎</td><td>してはらきじゅうろう</td>
+	<td>民主自由党</td><td>日本国憲法の起草に奔走。旧憲法下最後にして、戦後初の総選挙実施後総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B9%A3%E5%8E%9F%E5%96%9C%E9%87%8D%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>
+	<td><input type ="radio" name="dest" value="32"></td>
+	<td>32</td><td>吉田茂</td><td>よしだしげる</td>
+	<td>自由民主党</td><td>敗戦後から戦後日本復興の礎を築いた大宰相。暴言系エピソードも豊富。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%90%89%E7%94%B0%E8%8C%82" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="33"></td>
+	<td>33</td><td>片山哲</td><td>かたやまてつ</td>
+	<td>日本社会党</td><td>保守政党との連立で政権は不安定で、指導力発揮できず「グズ哲」と渾名。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%89%87%E5%B1%B1%E5%93%B2" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value="34"></td>
+	<td>34</td><td>芦田均</td><td>あしだひとし</td>
+	<td>民主党</td><td>憲法9条の起案に深く関与。総理就任後は昭和電工疑獄により７ヶ月で総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E8%8A%A6%E7%94%B0%E5%9D%87" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="35"></td>
+	<td>35</td><td>鳩山一郎</td><td>はとやまいちろう</td>
+	<td>自由民主党</td><td>盟友三木武吉の尽力により、自民党初代総裁に就任。日ソ国交回復を実現。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%B3%A9%E5%B1%B1%E4%B8%80%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="36"></td>
+	<td>36</td><td>石橋湛山</td><td>いしばしたんざん</td>
+	<td>自由民主党</td><td>総裁選挙で有力候補であった岸信介を破るも、脳梗塞を患い65日で退陣。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%9F%B3%E6%A9%8B%E6%B9%9B%E5%B1%B1" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="37"></td>
+	<td>37</td><td>岸信介</td><td>きしのぶすけ</td>
+	<td>自由民主党</td><td>日米安保条約の不平等性解消を実現するが、安保闘争の混乱の責により総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B2%B8%E4%BF%A1%E4%BB%8B" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="38"></td>
+	<td>38</td><td>池田勇人</td><td>いけだはやと</td>
+	<td>自由民主党</td><td>数々の暴言を残すも、総理として所得倍増計画を通じ国民経済を大きく向上。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%B1%A0%E7%94%B0%E5%8B%87%E4%BA%BA" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="39"></td>
+	<td>39</td><td>佐藤栄作</td><td>さとうえいさく</td>
+	<td>自由民主党</td><td>７年８ヶ月の連続在任期間を誇る。沖縄返還を実現してノーベル平和賞を受賞。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E4%BD%90%E8%97%A4%E6%A0%84%E4%BD%9C" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="40"></td>
+	<td>40</td><td>田中角栄</td><td>たなかかくえい</td>
+	<td>自由民主党</td><td>都市偏重から地方活性化へ転換。利益誘導と一体化させる事で後世に大きな影響。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%94%B0%E4%B8%AD%E8%A7%92%E6%A0%84" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="41"></td>
+	<td>41</td><td>三木武夫</td><td>みきたけお</td>
+	<td>自由民主党</td><td>いわゆるバルカン政治家。総理就任後、政治改革を志すも党内対立により断念。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E4%B8%89%E6%9C%A8%E6%AD%A6%E5%A4%AB" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="42"></td>
+	<td>42</td><td>福田赳夫</td><td>ふくだたけお</td>
+	<td>自由民主党</td><td>大蔵省出身のエースとして嘱望されるも、総裁選にて田中角栄の前に悉く破れる。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%A6%8F%E7%94%B0%E8%B5%B3%E5%A4%AB" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="43"></td>
+	<td>43</td><td>大平正芳</td><td>おおひらまさよし</td>
+	<td>自由民主党</td><td>「アーウー宰相」と言語は不明瞭ながら、戦後政界指折りの知性派との評あり。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%B9%B3%E6%AD%A3%E8%8A%B3" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="44"></td>
+	<td>44</td><td>鈴木善幸</td><td>すずきぜんこう</td>
+	<td>自由民主党</td><td>漁協出身で社会党在籍経験あり。大平総理急死を受け後継総理となる。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%88%B4%E6%9C%A8%E5%96%84%E5%B9%B8" TARGET="_blank" >リンク</a></td></tr>	
+<tr>	
+	<td><input type ="radio" name="dest" value="45"></td>
+	<td>45</td><td>中曽根康弘</td><td>なかそねやすひろ</td>
+	<td>自由民主党</td><td>国鉄、電電公社の民営化など行革を推進。日米安保体制の強化も図る。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E4%B8%AD%E6%9B%BD%E6%A0%B9%E5%BA%B7%E5%BC%98" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value="46"></td>
+	<td>46</td><td>竹下登</td><td>たけしたのぼる</td>
+	<td>自由民主党</td><td>消費税を導入。リクルート事件で総辞職後も、派閥を通じて絶大な影響力を誇る。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%AB%B9%E4%B8%8B%E7%99%BB" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value="47"></td>
+	<td>47</td><td>宇野宗佑</td><td>うのそうすけ</td>
+	<td>自由民主党</td><td>リクルート事件の影響で総理に就任するが、女性問題により僅か６９日で退陣。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%AE%87%E9%87%8E%E5%AE%97%E4%BD%91" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value="48"></td>
+	<td>48</td><td>海部俊樹</td><td>かいふとしき</td>
+	<td>自由民主党</td><td>竹下派の傀儡政権。のち新進党結成時初代党首となるも、結局自民党に復党。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%B5%B7%E9%83%A8%E4%BF%8A%E6%A8%B9" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value="49"></td>
+	<td>49</td><td>宮澤喜一</td><td>みやざわきいち</td>
+	<td>自由民主党</td><td>政治改革に関する意見対立で自民党分裂。５５年体制最後の総理大臣となる。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%AE%AE%E6%BE%A4%E5%96%9C%E4%B8%80" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=50></td>
+	<td>50</td><td>細川護煕</td><td>ほそかわもりひろ</td>
+	<td>日本新党</td><td>小選挙区制、政党交付金の成立。国民福祉税構想のを巡る混乱の中、突如辞任。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%B4%B0%E5%B7%9D%E8%AD%B7%E7%86%99" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=51></td>
+	<td>51</td><td>羽田孜</td><td>はたつとむ</td>
+	<td>新進党</td><td>少数与党政権。不信任案成立を受け、選挙制度改革中のため解散できず総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%BE%BD%E7%94%B0%E5%AD%9C" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=52></td>
+	<td>52</td><td>村山富市</td><td>むらやまとみいち</td>
+	<td>社会党</td><td>阪神淡路大震災に対応。また戦後５０周年にあたり村山談話を発表。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%9D%91%E5%B1%B1%E5%AF%8C%E5%B8%82" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=53></td>
+	<td>53</td><td>橋本龍太郎</td><td>はしもとりゅうたろう</td>
+	<td>自由民主党</td><td>中央省庁の再編を実現。消費税率を５％に上げた後、参院選で惨敗し総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%A9%8B%E6%9C%AC%E9%BE%8D%E5%A4%AA%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=54></td>
+	<td>54</td><td>小渕恵三</td><td>おぶちけいぞう</td>
+	<td>自由民主党</td><td>当初「冷めたピザ」と揶揄されるも、手堅い手腕で経済・外交に成果を上げる。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B0%8F%E6%B8%95%E6%81%B5%E4%B8%89" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=55></td>
+	<td>55</td><td>森喜朗</td><td>もりよしろう</td>
+	<td>自由民主党</td><td>暴言ではなく失言王。目の前の人を喜ばせようとしすぎての問題発言が多い。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E6%A3%AE%E5%96%9C%E6%9C%97" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=56></td>
+	<td>56</td><td>小泉純一郎</td><td>こいずみじゅんいちろう</td>
+	<td>自由民主党</td><td>自民党をぶっ壊すと宣言し、実際に経世会（竹下派）をぶっ壊した。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%B0%8F%E6%B3%89%E7%B4%94%E4%B8%80%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=57></td>
+	<td>57</td><td>安倍晋三</td><td>あべしんぞう</td>
+	<td>自由民主党</td><td>第一次内閣はお粗末でしたが、第二次内閣で本懐を遂げるか。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E5%AE%89%E5%80%8D%E6%99%8B%E4%B8%89" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=58></td>
+	<td>58</td><td>福田康夫</td><td>ふくだやすお</td>
+	<td>自由民主党</td><td>小泉政権下で名官房長官として活躍。総理時代はねじれ国会のため為す術もなし。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E7%A6%8F%E7%94%B0%E5%BA%B7%E5%A4%AB" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=59></td>
+	<td>59</td><td>麻生太郎</td><td>あそうたろう</td>
+	<td>自由民主党</td><td>リーマンショック後の経済立て直しに奔走するも、総選挙で惨敗し政権交代。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%BA%BB%E7%94%9F%E5%A4%AA%E9%83%8E" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=60></td>
+	<td>60</td><td>鳩山由紀夫</td><td>はとやまゆきお</td>
+	<td>民主党</td><td>自民党から政権を奪うものの、日米関係を大きく損ね、沖縄問題に禍根を残す。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%B3%A9%E5%B1%B1%E7%94%B1%E7%B4%80%E5%A4%AB" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=61></td>
+	<td>61</td><td>菅直人</td><td>かんなおと</td>
+	<td>民主党</td><td>東日本大震災に対応。再生可能エネルギー特措法成立と引き換えに総辞職。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E8%8F%85%E7%9B%B4%E4%BA%BA" TARGET="_blank" >リンク</a></td></tr>
+<tr>	
+	<td><input type ="radio" name="dest" value=62></td>
+	<td>62</td><td>野田佳彦</td><td>のだよしひこ</td>
+	<td>民主党</td><td>松下政経塾出身。政策的には手堅いが党内融和を軽視し混乱を招き、政権を失う。</td>
+	<td><a href="https://ja.wikipedia.org/wiki/%E9%87%8E%E7%94%B0%E4%BD%B3%E5%BD%A6" TARGET="_blank" >リンク</a></td></tr>
+</table>
+<p>
+<button type="Submit" name="command" value="vote">　　　　　　　　　投　　　　票　　　　　　　　　　</button>
+<button type="Submit" name="command" value="logout">投票せずログアウト（白票にもなりません）</button>
+</p>
+</form>	
 		
 	</body>
 </html>

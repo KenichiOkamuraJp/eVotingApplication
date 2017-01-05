@@ -5,6 +5,14 @@
 		<title></title>
 	</head>
 	<body>
-		
+	
+<h2>Voting Confirmation</h2>
+	<hr>
+	<p>{{.user.UserID}}さんの投票先は、{{.destination}}で宜しいですか？</p>		
+<form method="POST" action="./confirm">
+	<p>
+	<button type="Submit" name="command" value="confirm">確定</button>
+	<button type="Submit" name="command" value="revote">戻る</button>
+</form>
 	</body>
 </html>

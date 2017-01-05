@@ -5,6 +5,20 @@
 		<title></title>
 	</head>
 	<body>
-		
+
+<h2>eVoting System</h2>
+<hr>
+<br>
+<form method="POST" action="./login">
+Login ID<input name="id" type="text" > <p>
+Password<input name="pass" type="password"> <p> 
+{{.errorMessage}}<p>
+<button type="submit">Log in</button>
+</form>
+<hr>
+<form method="POST" action="./view">
+<button type="submit">投票結果を見る</button>
+</form>
+
 	</body>
 </html>

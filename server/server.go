@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"strconv"
 	"errors"
 	"fmt"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
@@ -60,7 +61,9 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 			}
 		
 		case "update" :
-			err = updateRow(stub ,args[0],args[1],0,0) ; 
+			frequency ,_ := strconv.ParseInt(args[2],10,64)
+			destination,_ := strconv.ParseInt(args[3],10,64)
+			err = updateRow(stub ,args[0],args[1],frequency,destination) ; 
 			if err != nil { 
 				return nil, fmt.Errorf("Error in updating record.. %s", err)
 			}
@@ -109,11 +112,24 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 			}
 			message = jsonVoters
 			
+		case "getOne" :
+		
+			_, voter , err := getRow(stub, args[0])
+			if err != nil {
+				return nil, fmt.Errorf("Error in getting a record.. %s", err)
+			}
+			
+			jsonVoter, jsonErr := json.Marshal(voter)
+			if jsonErr != nil {
+				return nil, fmt.Errorf("Error in marshaling JSON: %s", err)
+			}
+			message = jsonVoter
+			
 		case "authentication" :
 		
 			exist, voter , err := getRow(stub, args[0])
 			if err != nil { 
-				return nil, fmt.Errorf("Error in getting all records.. %s", err)
+				return nil, fmt.Errorf("Error in getting a ecord.. %s", err)
 			}
 			
 			if !exist {
@@ -130,7 +146,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		
 			exist, _ , err := getRow(stub, args[0])
 			if err != nil { 
-				return nil, fmt.Errorf("Error in getting all records.. %s", err)
+				return nil, fmt.Errorf("Error in getting a record.. %s", err)
 			}
 		
 			if !exist {
@@ -138,6 +154,24 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 			} else {
 				message = []byte("Exist")
 			} 		
+			
+		case "count" :
+
+			voters ,err := getAllRows(stub)
+			if err != nil { 
+				return nil, fmt.Errorf("Error in getting all records.. %s", err)
+			}
+			
+			var count [64]int
+			for i := 0 ; i < len(voters) ; i++ {
+				count[voters[i].Destination] = count[voters[i].Destination] + 1 
+			}
+			
+			jsonCount, jsonErr := json.Marshal(count)
+			if jsonErr != nil {
+				return nil, fmt.Errorf("Error in marshaling JSON: %s", err)
+			}
+			message = jsonCount
 			
 		default :
 			return nil, errors.New("Received unknown function invocation: " + function)
@@ -206,7 +240,7 @@ func insertRow (stub shim.ChaincodeStubInterface, userId string, password string
 	col1 := shim.Column{Value: &shim.Column_String_{String_: userId}}
 	col2 := shim.Column{Value: &shim.Column_String_{String_: password}}
 	col3 := shim.Column{Value: &shim.Column_Int64{Int64: 0}}
-	col4 := shim.Column{Value: &shim.Column_Int64{Int64: 0}}
+	col4 := shim.Column{Value: &shim.Column_Int64{Int64:63}}
 	columns = append(columns, &col0)	
 	columns = append(columns, &col1)
 	columns = append(columns, &col2)
